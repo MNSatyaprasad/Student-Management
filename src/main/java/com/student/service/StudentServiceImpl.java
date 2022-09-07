@@ -2,6 +2,7 @@ package com.student.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,13 +67,17 @@ public class StudentServiceImpl implements IStudentService {
 
 
 	@Override
-	public List<Students> getStudentByClass(List<Integer> std_class) {
+	public List<Students> getStudentByClass(Integer std_class) {
+		
 		List<Students> list = studentRepo.findAll();
-		list.stream().filter(std -> std.getStd_class().equals(std_class));
-		return list;
+		List<Students> stdLIst=list.stream().filter(std -> std.getStd_class().equals(std_class)).collect(Collectors.toList());
+		
+		
+		return stdLIst;
 	}
 
 
-	
+
+
 
 }

@@ -20,6 +20,8 @@ public interface IStudentService {
 	
 	public void deleteAllemployee();
 	
-	public List<Students> getStudentByClass(List<Integer> std_class);
+	public List<Students> getStudentByClass(Integer std_class);
+	
+	
 }
 

@@ -2,6 +2,7 @@ package com.student.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.model.Students;
+import com.student.service.IStudentRepo;
 import com.student.service.IStudentService;
 
 @RestController
@@ -23,6 +25,8 @@ public class StudentController {
 
 	@Autowired
 	private IStudentService studentservice;
+	
+	
 	
 	@PostMapping("/student")
 	public Integer saveStudent(@RequestBody Students student) {
@@ -41,8 +45,17 @@ public class StudentController {
 	}
 	
 	@GetMapping("/studentByClass/{sc}")
-	public List<Students> getAllStudentsByclass(@PathVariable("sc") List<Integer> std_class){
-		return studentservice.getStudentByClass(std_class);
+	public ResponseEntity<List<Students>> getAllStudentsByclass(@PathVariable("sc") Integer std_class){
+	     
+	ResponseEntity<List<Students>> rs = null;
+	List<Students> student = studentservice.getStudentByClass(std_class);
+	if(student != null &&  !student.isEmpty()) {
+		rs = new ResponseEntity<List<Students>>(HttpStatus.OK);
+	}
+	else {
+		rs = new ResponseEntity<List<Students>>(HttpStatus.NOT_FOUND);
+	}
+		return rs;
 	}
 	
 	@PutMapping("/update/{id}")
