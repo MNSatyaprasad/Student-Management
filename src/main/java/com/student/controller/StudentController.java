@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.student.service.IStudentRepo;
 import com.student.service.IStudentService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class StudentController {
 
 
@@ -45,17 +47,9 @@ public class StudentController {
 	}
 	
 	@GetMapping("/studentByClass/{sc}")
-	public ResponseEntity<List<Students>> getAllStudentsByclass(@PathVariable("sc") Integer std_class){
-	     
-	ResponseEntity<List<Students>> rs = null;
-	List<Students> student = studentservice.getStudentByClass(std_class);
-	if(student != null &&  !student.isEmpty()) {
-		rs = new ResponseEntity<List<Students>>(HttpStatus.OK);
-	}
-	else {
-		rs = new ResponseEntity<List<Students>>(HttpStatus.NOT_FOUND);
-	}
-		return rs;
+	public List<Students> getAllStudentsByclass(@PathVariable("sc") String stdclass){
+	List<Students> studentbyclass = studentservice.getStudentByClass(stdclass);
+		return studentbyclass;
 	}
 	
 	@PutMapping("/update/{id}")

@@ -2,7 +2,6 @@ package com.student.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +42,7 @@ public class StudentServiceImpl implements IStudentService {
 			   ()-> new ResourceNotFound("Student", "id", id));
 	   exstiingstudent.setFirstName(student.getFirstName());
 	   exstiingstudent.setLastName(student.getLastName());
-	   exstiingstudent.setStd_class(student.getStd_class());
+	   exstiingstudent.setStdclass(student.getStdclass());
 	   exstiingstudent.setSubject(student.getSubject());
 	   exstiingstudent.setDob(student.getDob());
 	   studentRepo.save(exstiingstudent);
@@ -67,14 +66,12 @@ public class StudentServiceImpl implements IStudentService {
 
 
 	@Override
-	public List<Students> getStudentByClass(Integer std_class) {
+	public List<Students> getStudentByClass(String stdclass) {
 		
-		List<Students> list = studentRepo.findAll();
-		List<Students> stdLIst=list.stream().filter(std -> std.getStd_class().equals(std_class)).collect(Collectors.toList());
-		
-		
-		return stdLIst;
+		return studentRepo.findByStdclass(stdclass);
 	}
+
+
 
 
 

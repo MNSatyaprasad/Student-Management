@@ -15,10 +15,9 @@ public class Students {
 	private Integer id;
 	private String firstName;
 	private String lastName;
-	private Integer std_class;
+	private String stdclass;
 	private String subject;
 	private LocalDate dob;
-	
 	public Integer getId() {
 		return id;
 	}
@@ -37,11 +36,11 @@ public class Students {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Integer getStd_class() {
-		return std_class;
+	public String getStdclass() {
+		return stdclass;
 	}
-	public void setStd_class(Integer std_class) {
-		this.std_class = std_class;
+	public void setStdclass(String stdclass) {
+		this.stdclass = stdclass;
 	}
 	public String getSubject() {
 		return subject;
@@ -55,18 +54,19 @@ public class Students {
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
-	public Students(Integer id, String firstName, String lastName, Integer std_class, String subject, LocalDate dob) {
+	public Students(Integer id, String firstName, String lastName, String stdclass, String subject, LocalDate dob) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.std_class = std_class;
+		this.stdclass = stdclass;
 		this.subject = subject;
 		this.dob = dob;
 	}
 	public Students() {
 		super();
 	}
+	
 	
 	
 
