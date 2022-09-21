@@ -21,7 +21,7 @@ import com.student.service.IStudentRepo;
 import com.student.service.IStudentService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class StudentController {
 
 
